@@ -1,7 +1,3 @@
-  env:
-    USE_CCACHE: 1
-    CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
-
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 301m  
@@ -26,7 +22,10 @@ task:
        - cd ~/scripts
        - sudo bash setup/android_build_env.sh
        - cd ~
-
+    env:
+    USE_CCACHE: 1
+    CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
+    
   clone_script:
     - repo init --depth=1 -u git://github.com/PixelExperience/manifest.git -b twelve || true
   sync_script:
