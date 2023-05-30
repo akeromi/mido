@@ -1,6 +1,10 @@
 task:
-  name: Build
-  persistent_worker: {}
+  name: "Setting Up, Syncing, Building and Uploading..."
+  timeout_in: 301m  
+  container:
+      image: ubuntu:latest
+      cpu: 8
+      memory: 32G
   env:
     USE_CCACHE: 1
     CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
