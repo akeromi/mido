@@ -5,11 +5,9 @@ task:
       image: ubuntu:latest
       cpu: 8
       memory: 32G
-
     env:
     USE_CCACHE: 1
     CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
-    
   clone_script:
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
