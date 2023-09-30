@@ -1,5 +1,5 @@
 env:
-OUTPUT: *.zip
+OUTPUT: lineage-18.1*.zip
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 400m  
