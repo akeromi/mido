@@ -1,6 +1,10 @@
 task:
-  name: Build
-  persistent_worker: {}
+  name: "crDroid Builds"
+  timeout_in: 2h
+  container:
+    image: apon77/aosp:cirrus
+    cpu: 8
+    memory: 32G
   env:
     USE_CCACHE: 1
     CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
