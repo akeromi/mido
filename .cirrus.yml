@@ -5,30 +5,14 @@ task:
     USE_CCACHE: 1
     CIRRUS_WORKING_DIR: /tmp/$CIRRUS_REPO_NAME
   clone_script:
-       - export DEBIAN_FRONTEND=noninteractive
-       - apt update
-       - apt install sudo
-       - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
-       - ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime
-       - apt-get install -y tzdata
-       - dpkg-reconfigure --frontend noninteractive tzdata
-       - sudo apt update -y && sudo apt install git aria2 curl wget rsync zip unzip lzma cpio ccache clang -y
-       - sudo apt install python3 -y
-       - sudo ln -sf /usr/bin/python3 /usr/bin/python
-       - git config --global user.name "SatoruGojo"
-       - git config --global user.email "satorugojo4200@gmail.com"
-       - git clone https://github.com/akhilnarang/scripts.git ~/scripts
-       - cd ~/scripts
-       - sudo bash setup/android_build_env.sh
-       - cd ~
-    - repo init --depth=1 -u git://github.com/PixelExperience/manifest.git -b twelve || true
+    - repo init --depth=1 -u git://github.com/LineageOS/android.git -b lineage-18.1 || true
   sync_script:
     - rm -rf .repo/local_manifests || true
-    - git clone https://github.com/IdkAnythin07/local_manifest.git --depth 1 -b Pixel_exp .repo/local_manifests
-    - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+    - git clone https://github.com/ninihao9/lol.git --depth 1 -b main
+    - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
   build_script:
     - source build/envsetup.sh
-    - aosp_tissot-userdebug
+    - lunch lineage_star2lte-userdebug
     - m aex -j$(nproc --all)
   ccache_stats_script:
     - ccache -s
@@ -38,4 +22,4 @@ task:
       # 14 days, 10 GB limit
     }
 
-    up out/target/product/mido/*.zip
+    up out/target/product/star2lte/*.zip
