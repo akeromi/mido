@@ -37,10 +37,8 @@ task:
       - mkdir -p ~/android/lineage
       - cd ~/android/lineage
       - repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --git-lfs
-      - repo sync	  
-      - rm -rf .repo/local_manifests || true
       - git clone https://github.com/ninihao9/lol.git --depth 1 -b main .repo/local_manifests
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - echo "============================"
       - echo "Syncing Complete!"
       - echo "============================"
